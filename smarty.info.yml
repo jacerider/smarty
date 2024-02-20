@@ -1,0 +1,5 @@
+name: 'Smarty'
+type: module
+description: 'Provides smarty.com API integration and functionality.'
+package: Custom
+core_version_requirement: ^10

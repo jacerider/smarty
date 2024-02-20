@@ -1,0 +1,10 @@
+{
+  "name": "jacerider/smarty",
+  "description": "Provides smarty.com API integration and functionality.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/core": "^9.3 || ^10",
+    "smartystreets/phpsdk": "^4.19"
+  }
+}
