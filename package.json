@@ -1,0 +1,28 @@
+{
+  "name": "smarty",
+  "version": "1.0.0",
+  "description": "Provides smarty.com API integration and functionality.",
+  "source": "src/js/smarty.address.js",
+  "default": "js/smarty.address.js",
+  "targets": {
+    "default": {}
+  },
+  "scripts": {
+    "watch": "parcel watch --no-hmr",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "parcel": "latest"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
+  },
+  "keywords": [
+    "javascript",
+    "starter"
+  ],
+  "dependencies": {
+    "smartystreets-javascript-sdk": "^5.0.1"
+  }
+}

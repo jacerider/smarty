@@ -1,0 +1,17 @@
+address:
+  js:
+    js/smarty.address.js: {}
+  css:
+    component:
+      css/smarty-address.css: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+    - smarty/auto
+
+# Libraries.
+autocomplete:
+  version: VERSION
+  js:
+    lib/autocomplete/autoComplete.js: { minified: true }

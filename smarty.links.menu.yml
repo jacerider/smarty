@@ -1,0 +1,5 @@
+smarty.settings:
+  title: Smarty Settings
+  parent: system.admin_config_system
+  route_name: smarty.settings
+  weight: 10

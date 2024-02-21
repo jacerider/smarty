@@ -4,3 +4,54 @@
  * @file
  * Primary module hooks for Smarty module.
  */
+
+ function smarty_element_info_alter(array &$info) {
+  // Decrease the default size of textfields.
+  if (isset($info['address'])) {
+    $info['address']['#smarty'] = FALSE;
+    $info['address']['#process'][] = 'smarty_address_process';
+  }
+}
+
+function smarty_address_process($element) {
+  if (!empty($element['#smarty']) && !empty($element['address_line1'])) {
+    $settings = \Drupal::config('smarty.settings');
+    ksm($element);
+    $element['address_line1']['#attributes']['class'][] = 'smarty-autocomplete';
+    $element['address_line1']['#attached']['library'][] = 'smarty/autocomplete';
+    $element['address_line1']['#default_value'] = '1282';
+    $element['address_line1']['#attached']['drupalSettings']['smarty'] = [
+      'key' => $settings->get('key'),
+    ];
+    foreach ([
+      'address_line2',
+      'address_line3',
+      'locality',
+      'administrative_area',
+      'postal_code',
+    ] as $fieldname) {
+      if (isset($element[$fieldname])) {
+        $element[$fieldname]['#disabled'] = TRUE;
+        $element[$fieldname]['#attributes']['class'][] = 'smarty-disabled';
+      }
+    }
+    // $element['lookup'] = [
+    //   '#type' => 'textfield',
+    //   '#title' => t('Lookup'),
+    //   '#default_value' => '1282',
+    //   '#weight' => -1000,
+    //   '#attributes' => [
+    //     'class' => ['smarty-autocomplete'],
+    //   ],
+    //   '#attached' => [
+    //     'library' => ['smarty/autocomplete'],
+    //     'drupalSettings' => [
+    //       'smarty' => [
+    //         'key' => $settings->get('key'),
+    //       ],
+    //     ],
+    //   ],
+    // ];
+  }
+  return $element;
+}

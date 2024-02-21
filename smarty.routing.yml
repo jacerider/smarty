@@ -1,0 +1,7 @@
+smarty.settings:
+  path: '/admin/config/system/smarty'
+  defaults:
+    _title: 'Smarty Settings'
+    _form: 'Drupal\smarty\Form\SettingsForm'
+  requirements:
+    _permission: 'administer site configuration'
