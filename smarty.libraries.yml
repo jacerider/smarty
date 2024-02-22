@@ -1,6 +1,6 @@
 address:
   js:
-    js/smarty.address.js: {}
+    js/smarty.address.js: { minified: true }
   css:
     component:
       css/smarty-address.css: {}
@@ -8,10 +8,3 @@ address:
     - core/drupal
     - core/drupalSettings
     - core/once
-    - smarty/auto
-
-# Libraries.
-autocomplete:
-  version: VERSION
-  js:
-    lib/autocomplete/autoComplete.js: { minified: true }

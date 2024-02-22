@@ -12,8 +12,10 @@
     "build": "parcel build"
   },
   "devDependencies": {
+    "@tarekraafat/autocomplete.js": "^10.2.7",
     "buffer": "^6.0.3",
-    "parcel": "latest"
+    "parcel": "latest",
+    "smartystreets-javascript-sdk": "^5.0.1"
   },
   "resolutions": {
     "@babel/preset-env": "7.13.8"
@@ -21,8 +23,5 @@
   "keywords": [
     "javascript",
     "starter"
-  ],
-  "dependencies": {
-    "smartystreets-javascript-sdk": "^5.0.1"
-  }
+  ]
 }

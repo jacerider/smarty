@@ -48,7 +48,11 @@ final class SettingsForm extends ConfigFormBase {
           'country_code' => 'US',
         ],
         '#field_overrides' => [
-          'postalCode' => 'hidden',
+          'givenName' => 'hidden',
+          'additionalName' => 'hidden',
+          'familyName' => 'hidden',
+          'organization' => 'hidden',
+          'addressLine3' => 'hidden',
         ],
         '#available_countries' => ['US'],
         '#smarty' => TRUE,

@@ -1,0 +1,8 @@
+# Schema for the configuration files of the Smarty module.
+smarty.settings:
+  type: config_object
+  label: 'Smarty settings'
+  mapping:
+    key:
+      type: string
+      label: 'Website Key'
