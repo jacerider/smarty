@@ -14,17 +14,15 @@
 }
 
 function smarty_address_process($element) {
-  if (!empty($element['#smarty']) && !empty($element['address_line1'])) {
-    $settings = \Drupal::config('smarty.settings');
+  $settings = \Drupal::config('smarty.settings');
+  if ((!empty($element['#smarty']) || $settings->get('address_apply_all')) && !empty($element['address_line1'])) {
     $element['#attributes']['class'][] = 'smarty-element';
-    $element['address_line1']['#type'] = 'search';
     $element['address_line1']['#attributes']['class'][] = 'smarty-autocomplete';
-    $element['address_line1']['#attributes']['autocomplete'] = 'off';
     $element['address_line1']['#attached']['library'][] = 'smarty/address';
-    $element['address_line1']['#default_value'] = '1282';
-    $element['address_line1']['#default_value'] = '1 ba';
+    // $element['address_line1']['#attributes']['data-1p-ignore'] = '';
     $element['address_line1']['#attached']['drupalSettings']['smarty'] = [
       'key' => $settings->get('key'),
+      'disable_complete' => $settings->get('disable_complete'),
     ];
     foreach ([
       'address_line2',
@@ -34,28 +32,9 @@ function smarty_address_process($element) {
       'postal_code',
     ] as $fieldname) {
       if (isset($element[$fieldname])) {
-        // $element[$fieldname]['#disabled'] = TRUE;
-        // $element[$fieldname]['#attributes']['class'][] = 'smarty-disabled';
         $element[$fieldname]['#attributes']['class'][] = 'smarty-' . str_replace('_', '-', $fieldname);
       }
     }
-    // $element['lookup'] = [
-    //   '#type' => 'textfield',
-    //   '#title' => t('Lookup'),
-    //   '#default_value' => '1282',
-    //   '#weight' => -1000,
-    //   '#attributes' => [
-    //     'class' => ['smarty-autocomplete'],
-    //   ],
-    //   '#attached' => [
-    //     'library' => ['smarty/autocomplete'],
-    //     'drupalSettings' => [
-    //       'smarty' => [
-    //         'key' => $settings->get('key'),
-    //       ],
-    //     ],
-    //   ],
-    // ];
   }
   return $element;
 }

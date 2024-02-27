@@ -19,6 +19,7 @@
     zipcode;
     autocomplete;
     selected;
+    settings;
 
     constructor(el) {
       var self = this;
@@ -30,6 +31,7 @@
       this.state = this.wrapper.querySelector('.smarty-administrative-area');
       this.zipcode = this.wrapper.querySelector('.smarty-postal-code');
       this.selected = null;
+      this.settings = drupalSettings.smarty;
 
       this.toggle(true);
       this.autocomplete = new autoComplete({
@@ -111,18 +113,20 @@
     }
 
     toggle(disable) {
-      var self = this;
-      ['line2', 'line3', 'city', 'state', 'zipcode'].forEach(function (field) {
-        if (self[field]) {
-          self[field].disabled = disable;
-          if (disable) {
-            self[field].closest('.js-form-wrapper').classList.add('smarty-disabled');
+      if (typeof this.settings.disable_complete === 'boolean' && this.settings.disable_complete === true) {
+        var self = this;
+        ['line2', 'line3', 'city', 'state', 'zipcode'].forEach(function (field) {
+          if (self[field]) {
+            self[field].disabled = disable;
+            if (disable) {
+              self[field].closest('.js-form-wrapper').classList.add('smarty-disabled');
+            }
+            else {
+              self[field].closest('.js-form-wrapper').classList.remove('smarty-disabled');
+            }
           }
-          else {
-            self[field].closest('.js-form-wrapper').classList.remove('smarty-disabled');
-          }
-        }
-      });
+        });
+      }
     }
 
     select(feedback) {
@@ -196,7 +200,7 @@
 
       const SmartyCore = SmartySDK.core;
       const Lookup = SmartySDK.usAutocompletePro.Lookup;
-      const credentials = new SmartyCore.SharedCredentials(drupalSettings.smarty.key);
+      const credentials = new SmartyCore.SharedCredentials(this.settings.key);
       let clientBuilder = new SmartyCore.ClientBuilder(credentials).withLicenses([
         "us-autocomplete-pro-cloud"
       ]);

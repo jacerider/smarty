@@ -6,3 +6,9 @@ smarty.settings:
     key:
       type: string
       label: 'Website Key'
+    address_apply_all:
+      type: boolean
+      label: 'Apply to all address fields'
+    disable_complete:
+      type: boolean
+      label: 'Disable address fields once address is chosen'
