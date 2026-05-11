@@ -5,21 +5,25 @@
  * Primary module hooks for Smarty module.
  */
 
- function smarty_element_info_alter(array &$info) {
-  // Decrease the default size of textfields.
+/**
+ * Implements hook_element_info_alter().
+ */
+function smarty_element_info_alter(array &$info) {
   if (isset($info['address'])) {
     $info['address']['#smarty'] = FALSE;
     $info['address']['#process'][] = 'smarty_address_process';
   }
 }
 
+/**
+ * Process callback for address elements.
+ */
 function smarty_address_process($element) {
   $settings = \Drupal::config('smarty.settings');
   if ((!empty($element['#smarty']) || $settings->get('address_apply_all')) && !empty($element['address_line1'])) {
     $element['#attributes']['class'][] = 'smarty-element';
     $element['address_line1']['#attributes']['class'][] = 'smarty-autocomplete';
     $element['address_line1']['#attached']['library'][] = 'smarty/address';
-    // $element['address_line1']['#attributes']['data-1p-ignore'] = '';
     $element['address_line1']['#attached']['drupalSettings']['smarty'] = [
       'key' => $settings->get('key'),
       'disable_complete' => $settings->get('disable_complete'),
