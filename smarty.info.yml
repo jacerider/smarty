@@ -3,6 +3,6 @@ type: module
 description: 'Provides smarty.com API integration and functionality.'
 package: Custom
 core_version_requirement: ^10 || ^11
-version: 0.0.0
+version: 1.0.1
 dependencies:
   - address:address
